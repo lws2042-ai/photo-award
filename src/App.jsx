@@ -3,7 +3,7 @@ function App() {
   const [photos, setPhotos] = useState([]);
   async function handleClick() {
     const API_KEY = import.meta.env.VITE_API_KEY;
-    const url = `http://apis.data.go.kr/B551011/PhokoAwrdService/phokoAwrdSyncList?serviceKey=${API_KEY}&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=C&showflag=1&_type=json`;
+    const url = `https://apis.data.go.kr/B551011/PhokoAwrdService/phokoAwrdSyncList?serviceKey=${API_KEY}&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=C&showflag=1&_type=json`;
 
     const response = await fetch(url);
     const data = await response.json();
@@ -23,7 +23,7 @@ function App() {
             <p>{photo.photoDesc}</p>
             <p>{photo.filmDay}</p>
             <p>{photo.koFilmst}</p>
-            <img src={photo.orgImage} alt={photo.koTitle} />
+            <img src={photo.orgImage?.replace(/^http:/, "https:")} alt={photo.koTitle} />
           </div>
         ))}
       </div>
